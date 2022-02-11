@@ -106,4 +106,64 @@
 
  보내는 데이터를 받을 수 있다.
 
- 
+# 4강
+JPA란 무엇인가
+9. 
+ persistence(영속성)은 데이터를 생성한 프로그램 실행이 종료되더라도 사라지지 않는 데이터의 특성을 의미.
+ 램 = 휘발성 데이터
+ 영구적 데이터 기록을 위해 DB에 저장하여 DBMS로 관리
+ JPA - 영구히 기록할 수 있도록 제공하는 API
+
+API란 ?
+애플리케이션 프로그래밍 인터페이스
+인터페이스를 통해 프로그래밍을 하여 프로그램을 만듬.
+
+- 인터페이스란?
+약속.
+A,B,C 존재 시
+B가 선언한 약속을 A,C가 지켜주는 것.
+상의가 불필요. 선포하면 지켜야만 함.
+그러므로 상하관계가 존재하는 약속.
+
+- 프로토콜이란?
+약속.
+A,B,C 존재 시 모두 관계가 평등
+서로에게 잘 맞는 프로토콜(약속)을 타협하여 정함
+
+JPA는 JAVA PERSISTENCE Application Programming interface
+-> 자바프로그램을 할때 영구적으로 데이터를 저장하기 위하여 필요한 인터페이스가 JPA
+
+# 5강
+10. JPA는 ORM기술이다.
+- ORM
+Object Relational Mapping
+오브젝트를 데이터베이스에 연결하는 방법론같은 것.
+
+Team 테이블
+id - int
+name - varchar
+year - varchar
+
+자바에서 이를 input하는 과정을 DML(delete, update, insert)
+output하는 과정을 select한다.
+
+이 와중, db의 언어와 자바의 언어가 서로 다름.
+그러므로 이를 모델링하는 작업이 필요.
+
+class Team{
+    int id;
+    String name;
+    String year;
+}
+
+데이터베이스에 있는 데이터를 자바에 모델링
+
+그런데 ORM은 Object Relation임. 이 상황과 반대
+class를 먼저 생성하고 난 다음 db를 생성할 수 있다.
+JPA인터페이스의 규칙을 지킨다면 ORM기술을 사용가능함.
+
+11. JPA는 반복적 CRUD의 과정을 생략가능하게 해줌
+SELECT, SELECT ALL, DELETE, UPDATE, INSERT의 과정 중
+DB에서 자바로 DATA를 넘길 때 데이터의 타입이 다른데, 이 과정이 매우 힘들다(노가다)
+이를 JPA에서 도와줌. 세션오픈, 쿼리전송, CONNECTION 등 일련의 과정을
+단순하게 처리가능 하도록 함수 1개로 제공
