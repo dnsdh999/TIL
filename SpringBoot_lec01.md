@@ -167,3 +167,71 @@ SELECT, SELECT ALL, DELETE, UPDATE, INSERT의 과정 중
 DB에서 자바로 DATA를 넘길 때 데이터의 타입이 다른데, 이 과정이 매우 힘들다(노가다)
 이를 JPA에서 도와줌. 세션오픈, 쿼리전송, CONNECTION 등 일련의 과정을
 단순하게 처리가능 하도록 함수 1개로 제공
+
+# 6강
+12. JPA는 영속성 컨텍스트를 가지고있다.
+영속성 : 어떤 테이터를 영구적으로 저장하게 해주는 속성 - 데이터베이스에 저장
+context : 모든 컨텍스트를 알고있다 - 대상에 대한 모든 것을 알고 있다.
+
+- 자바가 select 시 영속성 컨텍스트로 이동하여 특정 데이터를 요청
+영속성컨텍스트는 db에서 자료를 가져온 뒤 자바로 돌려줌
+
+모든 영속성컨텍스트는 자동으로 처리됨.
+
+13. JPA는 DB와 OOP의 불일치성을 해결하기 위한 방법론을 제공
+
+Class Team{
+    int id;
+    String name;
+    String year;
+}
+
+Class Player{
+    int id;
+    String name;
+    int teamId; (Team의 id 참조)
+}
+
+player를 조인해서 가져올 수 있지만
+
+Class Player{
+    int id;
+    String name;
+    Team team;
+}
+
+으로도 가능
+
+ORM을 통해서 db와 oop의 불일치성을 해결 가능
+
+# 7강
+14. JPA는 OOP의 관점에서 모델링을 할 수 있게 해준다. - 상속 콤포지션, 연관관계
+
+Class Car extends EntityDate{   // 상속을 해주면 해당 부분들이 추가로 생성됨
+    int id;
+    String name;
+    String color;
+    Engine engine;
+}
+
+Car
+name color engineId(oop관점에서 자동생성이 가능)
+...
+
+Class Engine extends EntityDate{
+    int id;
+    int power;
+}
+
+Engine
+id power
+...
+
+Class EntityDate{
+    TimeStamp createDate;
+    TimeStamp updateDate;
+}
+
+15. 방언 처리가 용이하여 Migration하기 좋음. 유지보수에도 좋음.
+추상화 객체로 원하는 db로 지정이 가능 (연결해서 사용이 가능) - 방언처리
+JPA는 쉽지만 어려움 - 적응을 하면 쉽다.
